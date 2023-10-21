@@ -15,10 +15,10 @@ class Movie {
   static findAll() {
     return database.query("SELECT * FROM movies");
   }
-  static update({title, genres, year, id}) {
+  static update({title, genres, year, photo, id}) {
     return database.query(
-      "UPDATE movies SET title = $1, genres = $2, year = $3 WHERE id = $4",
-      [title, genres, year, id]
+      "UPDATE movies SET title = $1, genres = $2, year = $3 , photo = $4 WHERE id = $4",
+      [title, genres, year, photo, id]
       );
   }
   static delete(id) {
