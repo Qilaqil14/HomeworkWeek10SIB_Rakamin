@@ -10,8 +10,8 @@ class MovieRepository {
     static findAll() {
         return Movie.findAll()
     }
-    static update(id,{title, genres, year, photo}){
-        return Movie.update( id,{ title, genres, year, photo });
+    static update(id,{title, genres, year}){
+        return Movie.update( id,{ title, genres, year });
     }
     static delete(id){
         return Movie.delete(id)

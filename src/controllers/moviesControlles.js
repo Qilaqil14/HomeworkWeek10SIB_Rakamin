@@ -51,10 +51,10 @@ class MoviesControlles {
         genres,
         year
       });
-      if (movie.rows.length === 0) {
+      if (movies.rows.length === 0) {
         res.status(404).json({ error: "Movie not found" });
       } else {
-        res.json(movie.rows[0]);
+        res.json(movies.rows[0]);
       }
     } catch (error) {
       res.status(500).json({ error: "Internal Server Error" });
