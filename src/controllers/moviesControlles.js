@@ -1,5 +1,5 @@
 const MovieRepository = require('../repository/moviesRepository')
-
+const fs = require('fs')
 
 class MoviesControlles {
   static async createMovies(req, res) {

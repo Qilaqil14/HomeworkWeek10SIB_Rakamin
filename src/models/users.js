@@ -1,28 +1,36 @@
-const database = require("../config/database");
+// src/models/User.js
+const db = require("../config/database");
 
 class User {
-  static create({ id, title, genres, year, photo }) {
-    return database.query(
-      "INSERT INTO users (id, title, genres, year, photo) VALUES ($1, $2, $3, $4, $5)",
-      [id, title, genres, year, photo]
+  static create({ email, gender, password, role }) {
+    return db.query(
+      "INSERT INTO users (email, gender, password, role) VALUES ($1, $2, $3, $4) RETURNING *",
+      [email, gender, password, role]
     );
   }
 
   static findById(id) {
-    return database.query("SELECT * FROM users WHERE id = $1", [id]);
+    return db.query("SELECT * FROM users WHERE id = $1", [id]);
+  }
+
+  static findByEmail(email) {
+    return db.query("SELECT * FROM users WHERE email = $1", [email]);
   }
 
   static findAll() {
-    return database.query("SELECT * FROM users");
+    return db.query("SELECT * FROM users");
   }
-  static update(id, { title, genres, year, photo }) {
-    return database.query(
-      "UPDATE users SET title = $1, genres = $2, year = $3 , photo = $4 WHERE id = $5",
-      [title, genres, year, photo, id]
+
+  static update({ email, gender, password, role, id }) {
+    return db.query(
+      "UPDATE users SET email = $1, gender = $2, password = $3, role = $4 WHERE id = $5",
+      [email, gender, password, role, id]
     );
   }
+
   static delete(id) {
-    return database.query("DELETE FROM users WHERE id = $1", [id]);
+    return db.query("DELETE FROM users WHERE id = $1", [id]);
   }
 }
+
 module.exports = User;
