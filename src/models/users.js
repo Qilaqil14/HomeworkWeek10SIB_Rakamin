@@ -17,8 +17,8 @@ class User {
   }
   static update(id, { title, genres, year, photo }) {
     return database.query(
-      "UPDATEuserss SET title = $1, genres = $2, year = $3 WHERE id = $5",
-      [title, genres, year, id]
+      "UPDATE users SET title = $1, genres = $2, year = $3 , photo = $4 WHERE id = $5",
+      [title, genres, year, photo, id]
     );
   }
   static delete(id) {
