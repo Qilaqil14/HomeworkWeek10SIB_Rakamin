@@ -46,10 +46,11 @@ class MoviesControlles {
     try {
       const id = req.params.id;
       const { title, genres, year} = req.body;
-      const movies = await MovieRepository.update(id, {
+      const movies = await MovieRepository.update( {
         title,
         genres,
-        year
+        year,
+        id
       });
       if (movies.rows.length === 0) {
         res.status(404).json({ error: "Movie not found" });
