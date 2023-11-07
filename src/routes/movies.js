@@ -3,6 +3,8 @@ const multer = require('multer')
 const path = require('path')
 const moviesControlles = require('../controllers/moviesControlles')
 
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../upload"));
@@ -16,7 +18,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 
 router.post('/', upload.single('photo'), moviesControlles.createMovies);
 router.get('/:id', moviesControlles.getMoviesId)

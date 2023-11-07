@@ -3,10 +3,12 @@ const bodyParser = require('body-parser')
 const app = express()
 const multer = require('multer')
 const path = require("path");
+const cors = require('cors')
 
 const morgan = require('morgan')
 const moviesRouter = require('./src/routes/movies.js')
 const usersRouter = require('./src/routes/users.js');
+const { options } = require('./src/routes/movies.js');
 
 app.use("/upload", express.static(path.join(__dirname, "./src/upload")));
 
@@ -20,7 +22,12 @@ app.use(express.json());
 app.use("/movies",moviesRouter);
 app.use("/users",usersRouter);
 
-
+// setup Cors
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 
 const port = process.env.PORT
